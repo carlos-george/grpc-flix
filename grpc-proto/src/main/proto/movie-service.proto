@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+import "common/common.proto";
+
+option java_multiple_files=true;
+option java_package="br.com.til.grpcflix.models.movie";
+
+message MovieDTO { 
+    string title = 1;
+    int32 year = 2;
+    double rating = 3;
+}
+
+message MovieSearchRequest {
+    common.Genre genre = 1;
+}
+
+message MovieSearchResponse {
+    repeated MovieDTO movie = 1;
+}
+
+service MoviieService {
+
+    rpc getMovies(MovieSearchRequest) returns (MovieSearchResponse);
+}
